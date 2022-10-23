@@ -1,17 +1,19 @@
 package product;
 
-public enum ProductList {
+public enum ProductType {
     BREAD("Хлеб"),
     BUTTER("Масло"),
     FISH("Рыбка");
 
     private final String name;
 
-    ProductList(String name) {
+    ProductType(String name) {
         this.name = name;
     }
 
     public String getName() {
         return name;
     }
+
+
 }

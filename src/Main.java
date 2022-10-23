@@ -1,39 +1,47 @@
 import passport.Passport;
-import product.Product;
-import product.ProductList;
-import product.Recipes;
-import product.ShopList;
+import product.*;
 
 import java.util.*;
+import java.util.function.Predicate;
 
 public class Main {
     public static void main(String[] args) throws Exception {
         product();
         multiplicationTable();
         passport();
+        removingOddNumbers();
 
     }
 
     public static void product() throws Exception {
         var shopList = new ShopList();
-        shopList.addProduct(ProductList.BREAD, 2, 0.1);
-        shopList.addProduct(ProductList.BUTTER, 50, 300);
-        shopList.addProduct(ProductList.FISH,250,0.3);
+        shopList.addProduct(ProductType.BREAD, 2, 0.1);
+        shopList.addProduct(ProductType.BUTTER, 50, 300);
+        shopList.addProduct(ProductType.FISH,250,0.3);
 
         System.out.println(shopList);
 
-        shopList.alreadyBought(ProductList.FISH);
-        shopList.remove(ProductList.FISH);
+        shopList.alreadyBought(ProductType.FISH);
+        shopList.remove(ProductType.FISH);
 
         System.out.println(shopList);
 
+        var recipesBook = new RecipesBook();
 
-        Recipes buter = new Recipes("Бутерброд");
-        buter.addProductsRecipes(new Product(ProductList.BREAD, 5, 0.2));
-        buter.addProductsRecipes(new Product(ProductList.BUTTER, 50, 300));
-        buter.addProductsRecipes(new Product(ProductList.FISH,250,0.3));
+        var buter = new Recipes("Бутерброд");
+        buter.addProductsRecipes(new Product(ProductType.BREAD, 5, 0.2));
+        buter.addProductsRecipes(new Product(ProductType.BUTTER, 50, 300));
+        buter.addProductsRecipes(new Product(ProductType.FISH,250,0.3));
 
-        System.out.println(buter);
+        var buter2 = new Recipes("Бутерброд");
+        buter2.addProductsRecipes(new Product(ProductType.BREAD, 5, 0.2));
+        buter2.addProductsRecipes(new Product(ProductType.BUTTER, 50, 300));
+
+
+        recipesBook.addRecipes(buter);
+        recipesBook.addRecipes(buter2);
+
+        System.out.println(recipesBook);
     }
 
     public static void multiplicationTable() {
@@ -90,5 +98,18 @@ public class Main {
 
     public static Passport getPassportNumber(int number) {
         return map.get(number);
+    }
+
+    public static void removingOddNumbers() {
+        Set<Integer> number = new HashSet<>(20);
+
+        Random random = new Random();
+
+        for (int i = 0; i < 20; i++) {
+            number.add(random.nextInt(1000));
+        }
+
+        number.removeIf(integer -> integer %2 == 0);
+        System.out.println(number);
     }
 }

@@ -4,24 +4,20 @@ import java.util.*;
 
 public class Product {
 
-    private final ProductList name;
+    private final ProductType name;
     private double price;
     private double weightKilo;
-    public Set<Product> products;
+    private boolean alreadyBought;
 
-
-    public Product(ProductList name, double price, double weightKilo) throws Exception {
+    public Product(ProductType name, double price, double weightKilo) throws Exception {
         this.name = name;
         setPrice(price);
         setWeightKilo(weightKilo);
+        this.alreadyBought = false;
     }
 
 
-    public Set<Product> getProducts() {
-        return products;
-    }
-
-    public ProductList getName() {
+    public ProductType getName() {
         return name;
     }
 
@@ -49,14 +45,25 @@ public class Product {
         }
     }
 
+    private boolean alreadyBought() {
+        return alreadyBought;
+    }
+
+    public void setAlreadyBought(boolean alreadyBought) {
+        this.alreadyBought = alreadyBought;
+    }
+
     @Override
     public boolean equals(Object o) {
-        throw new UnsupportedOperationException("Одинаковые продукты " + name.getName());
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return Double.compare(product.price, price) == 0 && Double.compare(product.weightKilo, weightKilo) == 0 && alreadyBought == product.alreadyBought && name == product.name;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(name, price, weightKilo);
+        return Objects.hash(name, price, weightKilo, alreadyBought);
     }
 
     @Override
