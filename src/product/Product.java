@@ -58,7 +58,7 @@ public class Product {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Product product = (Product) o;
-        return Double.compare(product.price, price) == 0 && Double.compare(product.weightKilo, weightKilo) == 0 && alreadyBought == product.alreadyBought && name == product.name;
+        return name == product.name;
     }
 
     @Override

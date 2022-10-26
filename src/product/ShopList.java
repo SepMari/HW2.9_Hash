@@ -15,14 +15,11 @@ public class ShopList {
         final Product product = new Product(name, price, weightKilo);
         if (name == null || product.getPrice() == 0 || product.getWeightKilo() == 0) {
             throw new Exception("Заполните карточку товара полностью");
-        } else {
-            products.add(product);
+        } else if (products.contains(product)) {
+            throw new IllegalArgumentException(name.getName() + " уже есть в корзине!");
         }
-        if (products.contains(product)) {
-            throw new IllegalArgumentException("Такой продукт уже есть в корзине!");
-        } else {
-            products.add(product);
-        }
+        products.add(product);
+
 
     }
 

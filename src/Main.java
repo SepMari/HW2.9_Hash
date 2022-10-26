@@ -6,11 +6,14 @@ import java.util.function.Predicate;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        product();
-        multiplicationTable();
-        passport();
-        removingOddNumbers();
-
+//        product();
+//        multiplicationTable();
+//        passport();
+//        removingOddNumbers();
+//        Phonebook();
+        collections();
+//        sumElement();
+//        allElement();
     }
 
     public static void product() throws Exception {
@@ -29,13 +32,13 @@ public class Main {
         var recipesBook = new RecipesBook();
 
         var buter = new Recipes("Бутерброд");
-        buter.addProductsRecipes(new Product(ProductType.BREAD, 5, 0.2));
-        buter.addProductsRecipes(new Product(ProductType.BUTTER, 50, 300));
-        buter.addProductsRecipes(new Product(ProductType.FISH,250,0.3));
+        buter.addProductsRecipes(new Product(ProductType.BREAD, 5, 0.2), 2);
+        buter.addProductsRecipes(new Product(ProductType.BUTTER, 50, 300), 1);
+        buter.addProductsRecipes(new Product(ProductType.FISH,250,0.3), 1);
 
         var buter2 = new Recipes("Бутерброд");
-        buter2.addProductsRecipes(new Product(ProductType.BREAD, 5, 0.2));
-        buter2.addProductsRecipes(new Product(ProductType.BUTTER, 50, 300));
+        buter2.addProductsRecipes(new Product(ProductType.BREAD, 5, 0.2), 1);
+        buter2.addProductsRecipes(new Product(ProductType.BUTTER, 50, 300), 2);
 
 
         recipesBook.addRecipes(buter);
@@ -112,4 +115,63 @@ public class Main {
         number.removeIf(integer -> integer %2 == 0);
         System.out.println(number);
     }
+
+    public static void Phonebook() {
+        HashMap<String, String> phonebook = new HashMap<>();
+
+        phonebook.put("Ivan Ivanov", "79099756547");
+        phonebook.put("Ilya Sidorov", "790965788766");
+        phonebook.put("Inna Neznama", "7998564356");
+        phonebook.put("Anna Mihailova", "792156887");
+        phonebook.put("Mike Mikov", "7956876899");
+        phonebook.put("Denis Lipov", "796435445");
+        phonebook.put("Phillip Nikov", "7967888888");
+        phonebook.put("Dean Vikov", "7955556375");
+        phonebook.put("Sem Rinov", "79457675686");
+        phonebook.put("Senya Mishin", "79346576567");
+
+        System.out.println(phonebook.values());
+    }
+
+    public static Map<String, Integer> map2;
+    public static void collections() {
+        Map<String, Integer> map = new HashMap<>();
+        map.put("str1", 2);
+        map.put("str2", 1);
+        map.put("str1", 2);
+
+
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            System.out.println(entry.getKey() + " " + entry.getValue());
+        }
+
+    }
+
+    private static final Map<String, List<Integer>> elementsMap = new HashMap<>(5);
+
+    public static void sumElement() {
+        var sumElement = new HashMap<>();
+        for (int i = 0; i < 5; i++) {
+            elementsMap.put("Значения " + i, List.of((int)(Math.random() * 1000), (int)(Math.random() * 1000), (int)(Math.random() * 1000)));
+        }
+        for (Map.Entry<String, List<Integer>> entry : elementsMap.entrySet()) {
+            sumElement.put(entry.getKey(), entry.getValue().get(0) + entry.getValue().get(1) + entry.getValue().get(2));
+        }
+
+        System.out.println(elementsMap);
+        System.out.println(sumElement);
+    }
+
+    public static void allElement() {
+        map2 = new LinkedHashMap<>();
+        for (int i = 0; i < 10; i++) {
+            map2.put("Ключ " + i, i);
+        }
+
+        for (Map.Entry<String, Integer> entry : map2.entrySet()) {
+            System.out.println(entry.getKey() + ':' + entry.getValue());
+        }
+    }
+
+
 }

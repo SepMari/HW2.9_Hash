@@ -5,21 +5,34 @@ import java.util.*;
 public class Recipes {
     private String nameRecipes;
     private double sumOfProductsRecipes;
-    private Set<Product> products;
+    private Integer count;
+    private HashMap<Product, Integer> products;
 
     public Recipes(String nameRecipes) {
         setNameRecipes(nameRecipes);
         sumOfProductsRecipes = 0;
-        products = new HashSet<>();
+        products = new HashMap<>();
     }
 
-    public void addProductsRecipes(Product product){
-        if (products.contains(product)) {
-            throw new IllegalArgumentException(product + " уже добавлен в рецепт");
-        } else {
-            products.add(product);
-            sumOfProductsRecipes = sumOfProductsRecipes + product.getPrice();
+    public void addProductsRecipes(Product product, Integer count){
+        if (products.containsKey(product) || count <= 0) {
+            throw new IllegalArgumentException(product + " " + count + " уже добавлен в рецепт или указано неверное количество");
+        } else{
+            products.put(product, count);
+            sumOfProductsRecipes = sumOfProductsRecipes + product.getPrice() * Math.abs(count);
         }
+    }
+
+    public void setSumOfProductsRecipes(double sumOfProductsRecipes) {
+        this.sumOfProductsRecipes = sumOfProductsRecipes;
+    }
+
+    public Integer getCount() {
+        return count;
+    }
+
+    public void setCount(Integer count) {
+        this.count = count;
     }
 
     public String getNameRecipes() {
@@ -30,11 +43,11 @@ public class Recipes {
         return sumOfProductsRecipes;
     }
 
-    public Set<Product> getProducts() {
+    public HashMap<Product, Integer> getProducts() {
         return products;
     }
 
-    public void setProducts(Set<Product> products) {
+    public void setProducts(HashMap<Product, Integer> products) {
         this.products = products;
     }
 
