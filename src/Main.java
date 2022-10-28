@@ -2,6 +2,7 @@ import passport.Passport;
 import product.*;
 
 import java.util.*;
+import java.util.Collections;
 import java.util.function.Predicate;
 
 public class Main {
@@ -134,17 +135,24 @@ public class Main {
     }
 
     public static Map<String, Integer> map2;
+
+    private final Map<String, Integer> map3 = new HashMap<>();
+
+
     public static void collections() {
-        Map<String, Integer> map = new HashMap<>();
-        map.put("str1", 2);
-        map.put("str2", 1);
-        map.put("str1", 2);
+        var collections = new Main();
 
+        collections.putCollections("str1", 2);
+        collections.putCollections("str2", 1);
+        collections.putCollections("str1", 2);
 
-        for (Map.Entry<String, Integer> entry : map.entrySet()) {
-            System.out.println(entry.getKey() + " " + entry.getValue());
+        System.out.println(collections);
+    }
+
+    public void putCollections(String string, Integer num) {
+        if (Objects.equals(map3.put(string, num), num)) {
+            throw new IllegalArgumentException("Одинаковые ключи");
         }
-
     }
 
     private static final Map<String, List<Integer>> elementsMap = new HashMap<>(5);
@@ -174,4 +182,10 @@ public class Main {
     }
 
 
+    @Override
+    public String toString() {
+        return "Main{" +
+                "map3=" + map3 +
+                '}';
+    }
 }
