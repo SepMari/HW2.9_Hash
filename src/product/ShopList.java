@@ -19,8 +19,6 @@ public class ShopList {
             throw new IllegalArgumentException(name.getName() + " уже есть в корзине!");
         }
         products.add(product);
-
-
     }
 
     public void remove(ProductType name) {

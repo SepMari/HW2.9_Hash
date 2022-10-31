@@ -17,10 +17,9 @@ public class Recipes {
     public void addProductsRecipes(Product product, Integer count){
         if (products.containsKey(product) || count <= 0) {
             throw new IllegalArgumentException(product + " " + count + " уже добавлен в рецепт или указано неверное количество");
-        } else{
-            products.put(product, count);
-            sumOfProductsRecipes = sumOfProductsRecipes + product.getPrice() * Math.abs(count);
         }
+        products.put(product, count);
+        sumOfProductsRecipes = sumOfProductsRecipes + product.getPrice() * Math.abs(count);
     }
 
     public void setSumOfProductsRecipes(double sumOfProductsRecipes) {

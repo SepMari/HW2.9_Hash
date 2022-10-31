@@ -28,9 +28,8 @@ public class Product {
     public void setPrice(double price) throws Exception {
         if (price == 0.0) {
             throw new UnsupportedOperationException("Заполните карточку продукта полностью");
-        } else {
-            this.price = price;
         }
+        this.price = price;
     }
 
     public double getWeightKilo() {

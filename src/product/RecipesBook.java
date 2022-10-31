@@ -13,9 +13,8 @@ public class RecipesBook {
     public void addRecipes(Recipes recipe) {
         if (recipes.contains(recipe)) {
             throw new IllegalArgumentException("Такой рецепт уже есть в книге!");
-        } else {
-            recipes.add(recipe);
         }
+        recipes.add(recipe);
     }
 
     @Override

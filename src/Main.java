@@ -61,8 +61,9 @@ public class Main {
         private final String s, rs;
 
         TaskMultiplicationTable() {
-            int a = (int) (Math.random() * 8 + 2);
-            int b = (int) (Math.random() * 8 + 2);
+            Random random = new Random();
+            int a = random.nextInt(10);
+            int b = random.nextInt(10);
             s = String.format("%d * %d", a, b);
             rs = String.format("%d * %d", b, a);
         }
@@ -136,23 +137,23 @@ public class Main {
 
     public static Map<String, Integer> map2;
 
-    private final Map<String, Integer> map3 = new HashMap<>();
+    private static Map<String, Integer> map3 = new HashMap<>();
 
 
     public static void collections() {
-        var collections = new Main();
 
-        collections.putCollections("str1", 2);
-        collections.putCollections("str2", 1);
-        collections.putCollections("str1", 2);
+        putCollections("str1", 2);
+        putCollections("str2", 1);
+        putCollections("str1", 2);
 
-        System.out.println(collections);
+        System.out.println(map3);
     }
 
-    public void putCollections(String string, Integer num) {
-        if (Objects.equals(map3.put(string, num), num)) {
-            throw new IllegalArgumentException("Одинаковые ключи");
+    public static void putCollections(String string, Integer num) {
+        if (map3.containsKey(string) && map3.get(string).equals(num)) {
+            throw new IllegalArgumentException("Одинаковые ключи и значения!");
         }
+        map3.put(string, num);
     }
 
     private static final Map<String, List<Integer>> elementsMap = new HashMap<>(5);
